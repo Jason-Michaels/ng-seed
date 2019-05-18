@@ -1,0 +1,58 @@
+version: 2
+
+jobs:
+  # test:
+  #   docker:
+  #     - image: circleci/node:10
+  #   steps:
+  #     - checkout
+  #     - run:
+  #         name: Install project
+  #         command: npm install
+      #- run:
+      #    name: Test project
+      #    command: npm test
+
+  docs-build-deploy:
+    docker:
+      - image: circleci/node:10
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - run:
+          name: Install project
+          command: npm install
+      - run:
+          name: Build project
+          command: npm run build-storybook
+      - add_ssh_keys:
+          fingerprints:
+            - $GH_ACCESS
+      - run:
+          name: Just random git stuff
+          command: |
+            git config user.email "ci-build@randomemail.co.za"
+            git config user.name "ci-build"
+      - run:
+          name: Deploy output files
+          command: node_modules/gh-pages/bin/gh-pages.js --message "ci deployment" --dist storybook-static
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - docs-build-deploy
+
+#for when it's ready
+# workflows:
+#   version: 2
+#   build:
+#     jobs:
+#       - docs-build
+#       - docs-deploy:
+#           requires:
+#             - test
+#             - docs-build
+#           filters:
+#             branches:
+# only: master
