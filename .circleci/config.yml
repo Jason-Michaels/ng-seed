@@ -25,9 +25,6 @@ jobs:
       - run:
           name: Build project
           command: npm run build-storybook
-      - add_ssh_keys:
-          fingerprints:
-            - $GH_ACCESS
       - run:
           name: Just random git stuff
           command: |

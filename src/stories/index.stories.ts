@@ -4,10 +4,18 @@ import { linkTo } from '@storybook/addon-links';
 
 import { Welcome, Button } from '@storybook/angular/demo';
 
+import { AppComponent } from '../app/app.component';
+
 storiesOf('Welcome', module).add('to Storybook', () => ({
   component: Welcome,
   props: {},
 }));
+
+storiesOf('AppComponent', module).add('Varaint 1', () => ({
+  component: AppComponent,
+  props: {},
+}));
+
 
 storiesOf('Button', module)
   .add('with text', () => ({
