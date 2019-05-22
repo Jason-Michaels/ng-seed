@@ -36,7 +36,6 @@ jobs:
       - run:
           name: Deploy to hosting site
           command: |
-            node_modules/firebase-tools/lib/bin/firebase.js use default
             node_modules/firebase-tools/lib/bin/firebase.js deploy --token=$FIREBASE_TOKEN --non-interactive
 
 workflows:
