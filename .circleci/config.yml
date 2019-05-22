@@ -36,7 +36,7 @@ jobs:
       - run:
           name: Deploy to hosting site
           command: |
-            node_modules/firebase deploy --token=$FIREBASE_TOKEN
+            node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN
 
 workflows:
   version: 2
