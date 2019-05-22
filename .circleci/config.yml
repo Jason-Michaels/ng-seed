@@ -31,11 +31,12 @@ jobs:
             git config user.email "ci-build@randomemail.co.za"
             git config user.name "ci-build"
       - run:
-          name: Deploy output files
+          name: Deploy storybook files
           command: node_modules/gh-pages/bin/gh-pages.js --message "ci deployment 2" --dist storybook-static
       - run:
           name: Deploy to hosting site
           command: |
+            npm install -g firebase-tools
             firebase use default
             firebase deploy --token=$FIREBASE_TOKEN --non-interactive
 
