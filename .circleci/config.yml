@@ -32,7 +32,12 @@ jobs:
             git config user.name "ci-build"
       - run:
           name: Deploy output files
-          command: node_modules/gh-pages/bin/gh-pages.js --message "ci deployment" --dist storybook-static
+          command: node_modules/gh-pages/bin/gh-pages.js --message "ci deployment 2" --dist storybook-static
+      - run:
+          name: Deploy to hosting site
+          commands:
+            - firebase use default
+            - firebase deploy --token=$FIREBASE_TOKEN --non-interactive
 
 workflows:
   version: 2
