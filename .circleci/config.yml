@@ -38,7 +38,7 @@ jobs:
           command: npm run build --prod
       - run:
           name: Deploy to hosting site
-          command: npm run firebase-deploy --project "ngseed-d16a2" --only hosting --token "$FIREBASE_TOKEN"
+          command: npm run firebase-deploy --project=ngseed-d16a2 --only=hosting --token=$FIREBASE_TOKEN
 
 workflows:
   version: 2
