@@ -36,8 +36,8 @@ jobs:
       - run:
           name: Deploy to hosting site
           command: |
-            node_modules/firebase-tools/lib/bin/firebase.js login:ci --no-localhost
-            node_modules/firebase-tools/lib/bin/firebase.js deploy --token=$FIREBASE_TOKEN
+            npm run build --prod
+            npm run firebase-deploy --token=$FIREBASE_TOKEN
 
 workflows:
   version: 2
